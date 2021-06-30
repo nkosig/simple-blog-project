@@ -9,8 +9,8 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     """Return all blog posts"""
-    time = datetime.datetime.now()
-    return jsonify({"message": "Hello World", "time": time})
+    time = datetime.now()
+    return jsonify({"message": "Hello World from Simple Blog App", "time": time})
 
 
 @app.route("/topics", methods=['GET'])
