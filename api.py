@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 
 from flask import Flask, request, jsonify
 from datastore import fetch_all_topics, fetch_topic_posts, store_topic, store_post
@@ -42,7 +42,8 @@ def get_posts(topic_id):
 @app.route("/topics/<topic_id>/posts", methods=['POST'])
 def add_post(topic_id):
     post = request.get_json(force=True)
-    id = post["title"].replace(" ", "-").lower()
+    id = datetime.today().strftime('%Y-%m-%d') + "-" + \
+        post["title"].replace(" ", "-").lower()
     store_post(str(topic_id), id, **post)
     response = jsonify({"message": "created"})
     response.status_code = 201

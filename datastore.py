@@ -12,7 +12,8 @@ def store_topic(id, **topic):
         key = client.key("Topic", id)
         entity = datastore.Entity(key=key)
 
-        topic["created_at"] = datetime.utcnow()
+        entity["created_at"] = datetime.utcnow()
+        entity["id"] = id
 
         entity.update(topic)
         client.put(entity)
@@ -26,20 +27,20 @@ def fetch_all_topics():
 
 def store_post(topic_id, post_id, **post):
 
-    topic_key = client.key("Topic", topic_id)
-    post_key = client.key("Post", post_id, parent=topic_key)
-    post_entity = datastore.Entity(key=post_key)
+    parent_key = client.key("Topic", topic_id)
+    key = client.key("Post", post_id, parent=parent_key)
+    entity = datastore.Entity(key=key)
 
-    post["created_at"] = datetime.utcnow()
+    entity["created_at"] = datetime.utcnow()
+    entity["id"] = post_id
 
-    post_entity.update(post)
-
-    client.put(post_entity)
+    entity.update(post)
+    client.put(entity)
 
 
 def fetch_topic_posts(topic_id):
 
-    topic_key = client.key("Topic", topic_id)
-    query = client.query(kind="Post", ancestor=topic_key)
+    ancestor_key = client.key("Topic", topic_id)
+    query = client.query(kind="Post", ancestor=ancestor_key)
 
     return list(query.fetch())
