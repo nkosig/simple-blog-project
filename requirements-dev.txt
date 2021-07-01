@@ -1,0 +1,7 @@
+-r requirements.txt
+
+# Test
+pytest
+
+# Linter
+Flake8 # ==3.9.2
