@@ -44,3 +44,14 @@ def fetch_topic_posts(topic_id):
     query = client.query(kind="Post", ancestor=ancestor_key)
 
     return list(query.fetch())
+
+
+def fetch_all_posts(limit, cursor=None):
+
+    query = client.query(kind="Post")
+    query.order = ["-created_at"]
+    query_iter = query.fetch(start_cursor=cursor, limit=limit)
+    page = next(query_iter.pages)
+    next_cursor = query_iter.next_page_token
+
+    return list(page), str(next_cursor)

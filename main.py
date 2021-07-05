@@ -1,9 +1,11 @@
 from datetime import datetime
 
-from flask import Flask, request, jsonify
-from datastore import fetch_all_topics, fetch_topic_posts, store_topic, store_post
+from flask import Flask, request, jsonify, Response
+from flask_cors import CORS
+from datastore import fetch_all_topics, fetch_topic_posts, store_topic, store_post, fetch_all_posts
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route('/')
@@ -26,8 +28,16 @@ def add_topic():
     topic = request.get_json(force=True)
     id = topic['topic'].replace(' ', '-').lower()
     store_topic(id, **topic)
-    response = jsonify({"message": "created"})
-    response.status_code = 201
+    data = jsonify({"message": "created"})
+    response = Response(response=data, status=201)
+    return response
+
+
+@app.route("/posts", methods=['GET'])
+def get_all_posts():
+    posts, cursor = fetch_all_posts(limit=5)
+    response = jsonify(posts=posts, next=cursor)
+    response.status_code = 200
     return response
 
 
@@ -66,4 +76,4 @@ def unauthorized():
 
 if __name__ == "__main__":
     # This is used when running the app locally only
-    app.run(host='127.0.0.1', port=8080, debug=True)
+    app.run(host='127.0.0.1', port=8084, debug=True)
