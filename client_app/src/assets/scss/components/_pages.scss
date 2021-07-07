@@ -1,0 +1,339 @@
+.ps-page {
+    min-height: 70vh;
+
+    .ps-page__header {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 300px;
+        padding: 0;
+        z-index: 99;
+        text-align: center;
+
+        &:before {
+            content: '';
+            display: block;
+            @include max-area();
+            z-index: 1;
+            @include linear-gradient(to top, rgba(#000, 0.15) 10%, rgba(#000, 0.5) 50%);
+        }
+
+        h3 {
+            position: relative;
+            z-index: 99;
+            font-size: 30px;
+            color: #fff;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+        }
+    }
+
+    .ps-page__content {
+        padding: 50px 0;
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-page__header {
+            padding: 0;
+            min-height: 600px;
+
+            h3 {
+                font-size: 48px;
+            }
+        }
+
+        .ps-page__content {
+            padding: 80px 0;
+        }
+    }
+}
+
+.ps-page--blog {
+    padding-top: 0;
+    padding-bottom: 50px;
+    @extend %list-reset;
+
+    .ps-blog--sidebar {
+    }
+
+    @media (min-width: 480px) {
+        &.white {
+            .ps-page__header {
+                .container {
+                    padding: 30px 50px;
+                }
+            }
+        }
+    }
+
+    @media (min-width: 1200px) {
+    }
+}
+
+.ps-page--without-hero {
+    padding-top: 0;
+
+    .ps-breadcrumb {
+        margin-bottom: 50px;
+        background-color: lighten(#e4e4e4, 5%);
+    }
+}
+
+.ps-page--single-post {
+    padding-top: 0;
+}
+
+.ps-page--minimalist {
+    .ps-post--classic {
+        margin-bottom: 50px;
+        border-bottom: none;
+    }
+
+    .ps-page__header {
+        padding: 50px 0;
+        text-align: center;
+
+        p {
+            font-size: 20px;
+            color: $color-text;
+        }
+
+        h3 {
+            font-weight: 800;
+            font-size: 40px;
+            line-height: 1.2em;
+
+            span {
+                font-weight: 300;
+                display: block;
+                font-size: 30px;
+                text-transform: capitalize;
+            }
+        }
+    }
+
+    .ps-page__content {
+        max-width: 960px;
+        margin: 0 auto;
+
+        .ps-section--home-timeline {
+            padding-top: 0;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-page__header {
+            padding: 100px 0;
+
+            h3 {
+                font-size: 60px;
+
+                span {
+                    font-weight: 300;
+                    display: block;
+                    font-size: 48px;
+                }
+            }
+        }
+    }
+}
+
+.ps-page--404 {
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+
+    h1 {
+        margin-bottom: 0;
+        color: $color-heading;
+    }
+
+    h3 {
+        font-size: 30px;
+        font-weight: 300;
+        text-transform: capitalize;
+        color: $color-heading;
+    }
+    p {
+        margin-bottom: 30px;
+        font-size: 14px;
+    }
+
+    .ps-section__content {
+        max-width: 960px;
+        padding: 100px 50px;
+        text-align: center;
+    }
+
+    .ps-section__links {
+        .ps-section__link {
+            color: $color-success;
+
+            &:hover {
+                color: $color-1st;
+            }
+        }
+
+        span {
+            display: inline-block;
+            vertical-align: middle;
+            padding: 0 20px;
+        }
+
+        .ps-btn {
+            font-weight: 400;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        h1 {
+            margin-bottom: 30px;
+            font-size: 100px;
+            font-weight: 700;
+        }
+    }
+}
+
+#homepage-primary {
+    .ps-top-posts {
+        padding: 50px 0;
+        min-height: 400px;
+    }
+
+    .ps-section--subscribe {
+        margin-bottom: 30px;
+        @media screen and (min-width: 1200px) {
+            margin-bottom: 80px;
+        }
+    }
+
+    .ps-section--instagram {
+    }
+
+    .ps-home-feature-posts {
+        padding-bottom: 0;
+        padding-top: 50px;
+    }
+
+    .ps-home-our-story {
+        .ps-blog--sidebar {
+            padding: 0;
+        }
+
+        .ps-section__pagination {
+            padding-top: 20px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-top-posts {
+            padding-bottom: 50px;
+            min-height: 600px;
+        }
+
+        .ps-home-feature-posts {
+            padding: 80px 0;
+        }
+
+        .ps-explore-topics {
+            padding: 80px 0;
+        }
+
+        .ps-home-our-story {
+            .ps-section__pagination {
+                padding-top: 40px;
+            }
+
+            .ps-post--list {
+                margin-bottom: 50px;
+            }
+
+            padding-bottom: 80px;
+        }
+    }
+}
+
+#homepage-fullcontent {
+    .ps-top-posts {
+        padding: 50px 0;
+        min-height: 400px;
+    }
+
+    .ps-home-fullcontent-posts {
+        .ps-section__pagination {
+            text-align: center;
+        }
+    }
+
+    .ps-section--subscribe {
+        margin-bottom: 30px;
+        @media screen and (min-width: 1200px) {
+            margin-bottom: 80px;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-home-fullcontent-posts {
+            padding: 80px 0;
+        }
+    }
+}
+
+#homepage-timeline {
+    .ps-section--subscribe {
+        margin-bottom: 30px;
+        @media screen and (min-width: 1200px) {
+            margin-bottom: 80px;
+        }
+    }
+}
+
+#homepage-grid {
+    .ps-top-posts {
+        padding: 50px 0;
+        min-height: 400px;
+    }
+
+    .ps-default-posts-on-top {
+        margin-bottom: 50px;
+    }
+
+    .ps-section--subscribe {
+        margin-bottom: 50px;
+    }
+
+    .ps-blog--post-items {
+        padding: 0 0 50px;
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-section--subscribe {
+            margin: 80px 0;
+        }
+
+        .ps-blog--post-items {
+            padding: 0 0 80px;
+        }
+    }
+}
+
+#homepage-grid-with-sidebar {
+    .ps-blog--sidebar {
+        padding: 50px 0;
+    }
+
+    @media screen and (min-width: 1200px) {
+        .ps-blog--sidebar {
+            padding: 80px 0;
+        }
+    }
+}
+
+#homepage-personal {
+    .ps-posts-in-carousel {
+        padding-top: 0;
+    }
+}

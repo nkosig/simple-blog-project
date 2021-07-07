@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "76a5c2de-bb02-4f25-bdc3-eccc4cd44fce",
+		"name": "Simple Blog App",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Topics",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/topics",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE Topic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"topic\": \"Technology\"\n}"
+				},
+				"url": {
+					"raw": "{{baseURL}}/topics",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"topics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Posts per topic",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/topics/technology/posts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"topics",
+						"technology",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ADD Post to topic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "        {\n            \"created\": \"Mon, 05 Jul 2021 15:07:20 GMT\",\n            \"created_at\": \"Wed, 30 Jun 2021 16:50:32 GMT\",\n            \"post\": \"The new tesla model was launched yesterday with self driving capabilities\",\n            \"title\": \"The new tesla launched with self driving capabilities\",\n            \"topic_id\": \"technology\"\n        }"
+				},
+				"url": {
+					"raw": "{{baseURL}}/topics/technology/posts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"topics",
+						"technology",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET All Posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/posts",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
