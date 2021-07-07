@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import Flask, request, jsonify, Response
 from flask_cors import CORS
-from datastore import fetch_all_topics, fetch_topic_posts, store_topic, store_post, fetch_all_posts
+import datastore
 
 app = Flask(__name__)
 CORS(app)
@@ -17,7 +17,7 @@ def home():
 
 @app.route("/topics", methods=['GET'])
 def get_topics():
-    topics = fetch_all_topics()
+    topics = datastore.fetch_all_topics()
     response = jsonify(topics)
     response.status_code = 200
     return response
@@ -27,7 +27,7 @@ def get_topics():
 def add_topic():
     topic = request.get_json(force=True)
     id = topic['topic'].replace(' ', '-').lower()
-    store_topic(id, **topic)
+    datastore.store_topic(id, **topic)
     data = jsonify({"message": "created"})
     response = Response(response=data, status=201)
     return response
@@ -35,7 +35,7 @@ def add_topic():
 
 @app.route("/posts", methods=['GET'])
 def get_all_posts():
-    posts, cursor = fetch_all_posts(limit=5)
+    posts, cursor = datastore.fetch_all_posts(limit=5)
     response = jsonify(posts=posts, next=cursor)
     response.status_code = 200
     return response
@@ -43,8 +43,16 @@ def get_all_posts():
 
 @app.route("/topics/<topic_id>/posts", methods=['GET'])
 def get_posts(topic_id):
-    posts = fetch_topic_posts(str(topic_id))
+    posts = datastore.fetch_topic_posts(str(topic_id))
     response = jsonify(posts)
+    response.status_code = 200
+    return response
+
+
+@app.route("/topics/<topic_id>/posts/<post_id>", methods=['GET'])
+def get_post(topic_id, post_id):
+    post = datastore.fetch_post(str(topic_id), str(post_id))
+    response = jsonify(post)
     response.status_code = 200
     return response
 
@@ -54,7 +62,7 @@ def add_post(topic_id):
     post = request.get_json(force=True)
     id = datetime.today().strftime('%Y-%m-%d') + "-" + \
         post["title"].replace(" ", "-").lower()
-    store_post(str(topic_id), id, **post)
+    datastore.store_post(str(topic_id), id, **post)
     response = jsonify({"message": "created"})
     response.status_code = 201
     return response

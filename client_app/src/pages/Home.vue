@@ -3,8 +3,8 @@
         <div class="container">
             <section class="ps-page--minimalist">
                 <div class="ps-page__header">
-                    <p>My Blog</p>
-                    <h3>Check my life <span>Inside Story.</span></h3>
+                    <p>Simple Blog</p>
+                    <h3></h3>
                 </div>
                 <div class="ps-page__content">
                     <section class="ps-section--home-timeline">
