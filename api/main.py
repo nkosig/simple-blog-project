@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import Flask, request, jsonify, Response
+from flask import Flask, request, jsonify, Response, render_template
 from flask_cors import CORS
 import datastore
 
@@ -9,11 +9,8 @@ CORS(app)
 
 
 @app.route('/')
-def home():
-    """Return all blog posts"""
-    time = datetime.now()
-    return jsonify({"message": "Hello World from Simple Blog App", "time": time})
-
+def index():
+  return render_template('index.html')
 
 @app.route("/topics", methods=['GET'])
 def get_topics():
