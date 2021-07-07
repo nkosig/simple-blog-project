@@ -1,7 +1,6 @@
 import { httpClient, baseUrl } from '../utils/httpClient';
 
 export async function getPostBySlug() {
-    // const endPoint = `${serializeQuery(payload)}`;
     const rsp = await httpClient.get(`${baseUrl}/posts`)
         .then(response => {
             if (response.data && response.data.posts.length > 0) {
